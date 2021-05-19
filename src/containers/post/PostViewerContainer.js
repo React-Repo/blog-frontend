@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { readPost, unloadPost } from '../../modules/post';
-import PostViewer from '../../components/post/PostViewer';
+import PostViewer from '../../components/posts/PostViewer';
 
 const PostViewerContainer = ({ match }) => {
   // 처음 마운트될 때 포스트 읽기 API 요청
@@ -14,10 +14,7 @@ const PostViewerContainer = ({ match }) => {
     loading: loading['post/READ_POST'],
   }));
 
-  console.log('post : ', post);
-  console.log('loading : ', loading);
   useEffect(() => {
-    console.log('readPost진입');
     dispatch(readPost(postId));
     // 언마운트될 때 리덕스에서 포스트 데이터 없애기
     return () => {
