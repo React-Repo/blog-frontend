@@ -24,7 +24,7 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
 `;
 
-const PostViewer = ({ post, error, loading }) => {
+const PostViewer = ({ post, error, loading, actionButtons }) => {
   // 에러 발생 시
   if (error) {
     if (error.response && error.response.status === 404) {
@@ -35,7 +35,6 @@ const PostViewer = ({ post, error, loading }) => {
 
   // 로딩 중이거나 아직 포스트 데이터가 없을 때
   if (loading || !post) {
-    console.log('로딩중');
     return null;
   }
   const { title, body, user, publishedDate, tags } = post;
@@ -50,6 +49,7 @@ const PostViewer = ({ post, error, loading }) => {
         />
         <Tags tags={tags} />
       </PostHead>
+      {actionButtons}
       <PostContent dangerouslySetInnerHTML={{ __html: body }} />
     </PostViewerBlock>
   );
